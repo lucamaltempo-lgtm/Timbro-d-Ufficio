@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cupynfoqjtx5x"]
+
+[ext_resource type="Script" uid="uid://rnlp60jtsi31" path="res://button.gd" id="1_f1qay"]
+
+[node name="Control" type="Control" unique_id=1953577995]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1279953, 1.5490029)
+
+[node name="Label" type="Label" parent="." unique_id=1968685992]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.5
+offset_right = 23.5
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "Lobby
+"
+
+[node name="Button" type="Button" parent="." unique_id=1258341415]
+layout_mode = 0
+offset_left = 29.255447
+offset_top = 134.27992
+offset_right = 136.25545
+offset_bottom = 165.27992
+text = "Inizio Partita
+"
+script = ExtResource("1_f1qay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=618774228]
+layout_mode = 0
+offset_left = 518.6192
+offset_top = 32.27883
+offset_right = 607.6192
+offset_bottom = 240.27884
+scale = Vector2(1.3298247, 0.5770363)
+
+[node name="Giocatore 1" type="Label" parent="VBoxContainer" unique_id=86184144]
+layout_mode = 2
+text = "Giocatore 1
+"
+
+[node name="Giocatore 2" type="Label" parent="VBoxContainer" unique_id=855405193]
+layout_mode = 2
+text = "Giocatore 2
+"
+
+[node name="Giocatore 3" type="Label" parent="VBoxContainer" unique_id=1163775927]
+layout_mode = 2
+text = "Giocatore 3
+"
+
+[node name="Giocatore 4" type="Label" parent="VBoxContainer" unique_id=1290081591]
+layout_mode = 2
+text = "Giocatore 4
+"
