@@ -1,5 +1,6 @@
 extends Control
 
+# Nomi di riserva, usati solo per testare questa scena da sola nell'editor.
 @export var giocatori: Array[String] = ["Giocatore 1", "Giocatore 2", "Giocatore 3", "Giocatore 4"]
 
 var indice_corrente: int = 0
@@ -11,6 +12,8 @@ var giudizi: Dictionary = {}
 
 func _ready() -> void:
 	print("Script assegnazione timbri partito")
+	if not GameState.giocatori.is_empty():
+		giocatori = GameState.giocatori
 	# GameState.infiltrato è disponibile per la logica di gioco ma non va
 	# mostrato a schermo: l'infiltrato deve restare segreto.
 	bottone_conferma.pressed.connect(_on_conferma_premuto)
