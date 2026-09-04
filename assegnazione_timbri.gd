@@ -11,6 +11,8 @@ var giudizi: Dictionary = {}
 
 func _ready() -> void:
 	print("Script assegnazione timbri partito")
+	# GameState.infiltrato è disponibile per la logica di gioco ma non va
+	# mostrato a schermo: l'infiltrato deve restare segreto.
 	bottone_conferma.pressed.connect(_on_conferma_premuto)
 	_mostra_giocatore_corrente()
 
