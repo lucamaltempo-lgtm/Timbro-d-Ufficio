@@ -1,10 +1,12 @@
 extends Control
 
 @onready var lista_giudizi: VBoxContainer = get_node("ScrollContainer/ListaGiudizi")
+@onready var bottone_votazione: Button = get_node("BottoneVotazione")
 @onready var bottone_lobby: Button = get_node("BottoneLobby")
 
 func _ready() -> void:
 	print("Script riepilogo giudizi partito")
+	bottone_votazione.pressed.connect(_on_votazione_premuto)
 	bottone_lobby.pressed.connect(_on_lobby_premuto)
 	_popola_riepilogo()
 
@@ -16,6 +18,10 @@ func _popola_riepilogo() -> void:
 		var riga = Label.new()
 		riga.text = nome_giocatore + ": " + GameState.giudizi[nome_giocatore]
 		lista_giudizi.add_child(riga)
+
+func _on_votazione_premuto() -> void:
+	print("Vado alla votazione")
+	get_tree().change_scene_to_file("res://votazione.tscn")
 
 func _on_lobby_premuto() -> void:
 	print("Ritorno alla lobby")

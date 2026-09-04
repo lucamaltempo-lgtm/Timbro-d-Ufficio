@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://votazione.gd" id="1_vota"]
+
+[node name="Votazione" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vota")
+
+[node name="LabelTitolo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 40.0
+offset_right = 150.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+text = "Votazione"
+
+[node name="ContenitoreVoto" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelGiocatore" type="Label" parent="ContenitoreVoto"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "Tocca a Giocatore 1: chi pensi sia l'infiltrato?"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContenitoreVoto"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ListaVoto" type="VBoxContainer" parent="ContenitoreVoto/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContenitoreRisultati" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelRisultato" type="Label" parent="ContenitoreRisultati"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 90.0
+offset_right = 220.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Risultato"
+
+[node name="ScrollContainerRisultati" type="ScrollContainer" parent="ContenitoreRisultati"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ListaVotiDettaglio" type="VBoxContainer" parent="ContenitoreRisultati/ScrollContainerRisultati"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottoneLobby" type="Button" parent="ContenitoreRisultati"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 180.0
+offset_right = 80.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Torna alla lobby"
