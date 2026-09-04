@@ -19,8 +19,8 @@ func _ready() -> void:
 func _mostra_giocatore_corrente() -> void:
 	if indice_corrente >= giocatori.size():
 		print("Giudizi raccolti: ", giudizi)
-		print("Ritorno alla lobby")
-		get_tree().change_scene_to_file("res://sch_princ.tscn")
+		GameState.giudizi = giudizi
+		get_tree().change_scene_to_file("res://riepilogo_giudizi.tscn")
 		return
 
 	label_giocatore.text = giocatori[indice_corrente]
