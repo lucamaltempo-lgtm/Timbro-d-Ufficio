@@ -76,9 +76,11 @@ func _mostra_risultati() -> void:
 	var testo = "Più votato/i: " + ", ".join(piu_votati) + "\n"
 	testo += "L'infiltrato era: " + GameState.infiltrato + "\n"
 	if infiltrato_scoperto:
-		testo += "L'infiltrato è stato scoperto!"
+		testo += "L'infiltrato è stato scoperto!\n"
+		testo += "Vittoria degli altri giocatori!"
 	else:
-		testo += "L'infiltrato NON è stato scoperto!"
+		testo += "L'infiltrato NON è stato scoperto!\n"
+		testo += "Vittoria dell'infiltrato!"
 
 	label_risultato.text = testo
 	print(testo)
