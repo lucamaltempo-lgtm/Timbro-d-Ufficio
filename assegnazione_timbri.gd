@@ -9,6 +9,7 @@ var giudizi: Dictionary = {}
 @onready var label_giocatore: Label = get_node("LabelGiocatore")
 @onready var campo_giudizio: LineEdit = get_node("CampoGiudizio")
 @onready var bottone_conferma: Button = get_node("BottoneConferma")
+@onready var label_avviso: Label = get_node("LabelAvviso")
 
 func _ready() -> void:
 	print("Script assegnazione timbri partito")
@@ -17,6 +18,7 @@ func _ready() -> void:
 	# GameState.infiltrato è disponibile per la logica di gioco ma non va
 	# mostrato a schermo: l'infiltrato deve restare segreto.
 	bottone_conferma.pressed.connect(_on_conferma_premuto)
+	campo_giudizio.text_changed.connect(_on_testo_giudizio_cambiato)
 	_mostra_giocatore_corrente()
 
 func _mostra_giocatore_corrente() -> void:
@@ -29,6 +31,12 @@ func _mostra_giocatore_corrente() -> void:
 	label_giocatore.text = giocatori[indice_corrente]
 	campo_giudizio.text = ""
 	campo_giudizio.placeholder_text = "Scrivi il tuo giudizio..."
+	label_avviso.visible = false
+
+# Nasconde l'avviso appena il giocatore modifica il testo: dovrà comunque
+# premere di nuovo Conferma per far ricontrollare il nuovo testo.
+func _on_testo_giudizio_cambiato(_nuovo_testo: String) -> void:
+	label_avviso.visible = false
 
 func _on_conferma_premuto() -> void:
 	if indice_corrente >= giocatori.size():
@@ -37,6 +45,13 @@ func _on_conferma_premuto() -> void:
 	var giudizio = campo_giudizio.text.strip_edges()
 	if giudizio.is_empty():
 		print("Giudizio vuoto, inserisci un testo prima di confermare")
+		return
+
+	var parola_vietata = Moderazione.trova_parola_vietata(giudizio)
+	if not parola_vietata.is_empty():
+		label_avviso.text = "Testo non consentito: rimuovi la parola \"" + parola_vietata + "\" prima di confermare."
+		label_avviso.visible = true
+		print("Giudizio bloccato dalla moderazione, parola vietata: ", parola_vietata)
 		return
 
 	var nome_giocatore = giocatori[indice_corrente]

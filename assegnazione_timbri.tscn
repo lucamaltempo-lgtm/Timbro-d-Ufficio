@@ -40,6 +40,25 @@ grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "Scrivi il tuo giudizio..."
 
+[node name="LabelAvviso" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 26.0
+offset_right = 150.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.15, 0.15, 1)
+horizontal_alignment = 1
+autowrap_mode = 2
+text = ""
+
 [node name="BottoneConferma" type="Button" parent="." unique_id=2018432667]
 layout_mode = 1
 anchors_preset = 8
@@ -48,9 +67,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -60.0
-offset_top = 50.0
+offset_top = 64.0
 offset_right = 60.0
-offset_bottom = 90.0
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Conferma"
