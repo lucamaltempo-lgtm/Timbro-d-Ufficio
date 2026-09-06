@@ -20,7 +20,9 @@ func _ready() -> void:
 		giocatori = GameState.giocatori
 
 	for nome_giocatore in giocatori:
-		voti[nome_giocatore] = 0
+		# Il gettone Depistaggio, se usato durante la discussione, ha già
+		# aggiunto voti extra segreti che partono qui inclusi nel conteggio.
+		voti[nome_giocatore] = GameState.voti_extra.get(nome_giocatore, 0)
 
 	bottone_lobby.pressed.connect(_on_lobby_premuto)
 	_mostra_turno_corrente()

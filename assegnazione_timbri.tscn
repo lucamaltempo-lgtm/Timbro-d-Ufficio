@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://dnwk8eqr4wuno"]
 
-[ext_resource type="Script" path="res://assegnazione_timbri.gd" id="1_asgnt"]
+[ext_resource type="Script" uid="uid://xlk12stw67d4" path="res://assegnazione_timbri.gd" id="1_asgnt"]
 
-[node name="AssegnazioneTimbri" type="Control"]
+[node name="AssegnazioneTimbri" type="Control" unique_id=1233658958]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_asgnt")
 
-[node name="LabelGiocatore" type="Label" parent="."]
+[node name="LabelGiocatore" type="Label" parent="." unique_id=627549672]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -22,10 +22,10 @@ offset_right = 120.0
 offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
-horizontal_alignment = 1
 text = "Giocatore 1"
+horizontal_alignment = 1
 
-[node name="CampoGiudizio" type="LineEdit" parent="."]
+[node name="CampoGiudizio" type="LineEdit" parent="." unique_id=1483453217]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "Scrivi il tuo giudizio..."
 
-[node name="BottoneConferma" type="Button" parent="."]
+[node name="BottoneConferma" type="Button" parent="." unique_id=2018432667]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

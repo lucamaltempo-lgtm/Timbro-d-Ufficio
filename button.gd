@@ -16,4 +16,7 @@ func _on_pressed() -> void:
 	# in GameState per la logica di gioco nella schermata successiva.
 	GameState.infiltrato = infiltrato.text.strip_edges()
 	GameState.giocatori = nomi_giocatori
+	# Nuova partita: azzera i gettoni azione e i voti extra della partita precedente.
+	GameState.gettoni_usati = {}
+	GameState.voti_extra = {}
 	get_tree().change_scene_to_file("res://assegnazione_timbri.tscn")
