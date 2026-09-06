@@ -1,6 +1,14 @@
-[gd_scene format=3 uid="uid://cupynfoqjtx5x"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" uid="uid://rnlp60jtsi31" path="res://button.gd" id="1_lobby"]
+[ext_resource type="StyleBoxFlat" path="res://stile_documento.tres" id="2_documento"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_normale.tres" id="3_bottone_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_hover.tres" id="4_bottone_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_premuto.tres" id="5_bottone_premuto"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_disabilitato.tres" id="6_bottone_disabilitato"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_normale.tres" id="7_bottone_primario_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_hover.tres" id="8_bottone_primario_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_premuto.tres" id="9_bottone_primario_premuto"]
 
 [node name="Lobby" type="Control" unique_id=1953577995]
 layout_mode = 3
@@ -11,77 +19,116 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lobby")
 
-[node name="LabelTitolo" type="Label" parent="." unique_id=1968685992]
+[node name="Sfondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.29, 0.24, 1)
+
+[node name="Documento" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_documento")
+
+[node name="LabelTitolo" type="Label" parent="Documento" unique_id=1968685992]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -100.0
-offset_top = 30.0
+offset_top = 18.0
 offset_right = 100.0
-offset_bottom = 70.0
+offset_bottom = 54.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 text = "Lobby"
 
-[node name="LabelConteggio" type="Label" parent="."]
+[node name="LineaSeparatore" type="ColorRect" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 58.0
+offset_right = 190.0
+offset_bottom = 60.0
+grow_horizontal = 2
+color = Color(0.66, 0.6, 0.48, 1)
+
+[node name="LabelConteggio" type="Label" parent="Documento"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -100.0
-offset_top = 75.0
+offset_top = 66.0
 offset_right = 100.0
-offset_bottom = 100.0
+offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 horizontal_alignment = 1
 text = "Giocatori: 4/10"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="Documento"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -140.0
-offset_top = -140.0
+offset_top = 96.0
 offset_right = 140.0
-offset_bottom = 100.0
+offset_bottom = 330.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="ListaGiocatori" type="VBoxContainer" parent="ScrollContainer"]
+[node name="ListaGiocatori" type="VBoxContainer" parent="Documento/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BottoneAggiungi" type="Button" parent="."]
+[node name="BottoneAggiungi" type="Button" parent="Documento"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -110.0
-offset_top = 115.0
+offset_top = 344.0
 offset_right = 110.0
-offset_bottom = 151.0
+offset_bottom = 380.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_styles/disabled = ExtResource("6_bottone_disabilitato")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.42, 1)
 text = "+ Aggiungi giocatore"
 
-[node name="BottoneInizio" type="Button" parent="." unique_id=1258341415]
+[node name="BottoneInizio" type="Button" parent="Documento" unique_id=1258341415]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -80.0
-offset_top = 161.0
+offset_top = 390.0
 offset_right = 80.0
-offset_bottom = 197.0
+offset_bottom = 426.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_styles/normal = ExtResource("7_bottone_primario_normale")
+theme_override_styles/hover = ExtResource("8_bottone_primario_hover")
+theme_override_styles/pressed = ExtResource("9_bottone_primario_premuto")
+theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
 text = "Inizio Partita"

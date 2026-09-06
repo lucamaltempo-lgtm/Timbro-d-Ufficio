@@ -9,10 +9,12 @@ const MAX_GIOCATORI := 10
 
 var righe_giocatori: Array[HBoxContainer] = []
 
-@onready var lista_giocatori: VBoxContainer = get_node("ScrollContainer/ListaGiocatori")
-@onready var bottone_aggiungi: Button = get_node("BottoneAggiungi")
-@onready var bottone_inizio: Button = get_node("BottoneInizio")
-@onready var label_conteggio: Label = get_node("LabelConteggio")
+# I nodi sono annidati dentro il pannello "Documento" (l'aspetto da foglio
+# d'ufficio della schermata): vedi sch_princ.tscn.
+@onready var lista_giocatori: VBoxContainer = get_node("Documento/ScrollContainer/ListaGiocatori")
+@onready var bottone_aggiungi: Button = get_node("Documento/BottoneAggiungi")
+@onready var bottone_inizio: Button = get_node("Documento/BottoneInizio")
+@onready var label_conteggio: Label = get_node("Documento/LabelConteggio")
 
 func _ready() -> void:
 	print("Script lobby partito")
@@ -33,11 +35,13 @@ func _aggiungi_riga(nome_predefinito: String) -> void:
 	campo_nome.text = nome_predefinito
 	campo_nome.placeholder_text = "Nome giocatore"
 	campo_nome.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	TemaUfficio.applica_stile_campo_testo(campo_nome)
 	riga.add_child(campo_nome)
 
 	var bottone_rimuovi = Button.new()
 	bottone_rimuovi.text = "Rimuovi"
 	bottone_rimuovi.pressed.connect(_on_rimuovi_premuto.bind(riga))
+	TemaUfficio.applica_stile_bottone(bottone_rimuovi)
 	riga.add_child(bottone_rimuovi)
 
 	lista_giocatori.add_child(riga)

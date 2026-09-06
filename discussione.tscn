@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://discussione.gd" id="1_disc"]
+[ext_resource type="StyleBoxFlat" path="res://stile_documento.tres" id="2_documento"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_normale.tres" id="3_bottone_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_hover.tres" id="4_bottone_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_premuto.tres" id="5_bottone_premuto"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_disabilitato.tres" id="6_bottone_disabilitato"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_normale.tres" id="7_bottone_primario_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_hover.tres" id="8_bottone_primario_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_premuto.tres" id="9_bottone_primario_premuto"]
 
 [node name="Discussione" type="Control"]
 layout_mode = 3
@@ -11,21 +19,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_disc")
 
-[node name="LabelTitolo" type="Label" parent="."]
+[node name="Sfondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.29, 0.24, 1)
+
+[node name="Documento" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_documento")
+
+[node name="LabelTitolo" type="Label" parent="Documento"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -150.0
-offset_top = 40.0
+offset_top = 18.0
 offset_right = 150.0
-offset_bottom = 80.0
+offset_bottom = 54.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 text = "Discussione"
 
-[node name="ContenitoreGettoni" type="Control" parent="."]
+[node name="LineaSeparatore" type="ColorRect" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 58.0
+offset_right = 190.0
+offset_bottom = 60.0
+grow_horizontal = 2
+color = Color(0.66, 0.6, 0.48, 1)
+
+[node name="ContenitoreGettoni" type="Control" parent="Documento"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelGiocatoreGettoni" type="Label" parent="ContenitoreGettoni"]
+[node name="LabelGiocatoreGettoni" type="Label" parent="Documento/ContenitoreGettoni"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,12 +91,13 @@ offset_right = 220.0
 offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 autowrap_mode = 2
 text = "Tocca a Giocatore 1: usa un gettone azione in segreto o passa il turno."
 
-[node name="BottoneDepistaggio" type="Button" parent="ContenitoreGettoni"]
+[node name="BottoneDepistaggio" type="Button" parent="Documento/ContenitoreGettoni"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,9 +110,15 @@ offset_right = 140.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_styles/disabled = ExtResource("6_bottone_disabilitato")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.42, 1)
 text = "Usa Depistaggio (voto extra segreto)"
 
-[node name="BottoneVerifica" type="Button" parent="ContenitoreGettoni"]
+[node name="BottoneVerifica" type="Button" parent="Documento/ContenitoreGettoni"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,9 +131,15 @@ offset_right = 140.0
 offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_styles/disabled = ExtResource("6_bottone_disabilitato")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.42, 1)
 text = "Usa Verifica (scopri l'infiltrato)"
 
-[node name="BottonePassa" type="Button" parent="ContenitoreGettoni"]
+[node name="BottonePassa" type="Button" parent="Documento/ContenitoreGettoni"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,9 +152,13 @@ offset_right = 80.0
 offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 text = "Passa (non uso gettoni)"
 
-[node name="ContenitoreSelezioneTarget" type="Control" parent="ContenitoreGettoni"]
+[node name="ContenitoreSelezioneTarget" type="Control" parent="Documento/ContenitoreGettoni"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -105,7 +167,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelSelezioneTarget" type="Label" parent="ContenitoreGettoni/ContenitoreSelezioneTarget"]
+[node name="LabelSelezioneTarget" type="Label" parent="Documento/ContenitoreGettoni/ContenitoreSelezioneTarget"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -118,12 +180,13 @@ offset_right = 220.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 autowrap_mode = 2
 text = "Scegli un giocatore:"
 
-[node name="ScrollContainerTarget" type="ScrollContainer" parent="ContenitoreGettoni/ContenitoreSelezioneTarget"]
+[node name="ScrollContainerTarget" type="ScrollContainer" parent="Documento/ContenitoreGettoni/ContenitoreSelezioneTarget"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -137,11 +200,11 @@ offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ListaTarget" type="VBoxContainer" parent="ContenitoreGettoni/ContenitoreSelezioneTarget/ScrollContainerTarget"]
+[node name="ListaTarget" type="VBoxContainer" parent="Documento/ContenitoreGettoni/ContenitoreSelezioneTarget/ScrollContainerTarget"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BottoneAnnullaSelezione" type="Button" parent="ContenitoreGettoni/ContenitoreSelezioneTarget"]
+[node name="BottoneAnnullaSelezione" type="Button" parent="Documento/ContenitoreGettoni/ContenitoreSelezioneTarget"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -154,9 +217,13 @@ offset_right = 80.0
 offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 text = "Annulla"
 
-[node name="ContenitoreRisultatoSegreto" type="Control" parent="ContenitoreGettoni"]
+[node name="ContenitoreRisultatoSegreto" type="Control" parent="Documento/ContenitoreGettoni"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -165,7 +232,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelRisultatoSegreto" type="Label" parent="ContenitoreGettoni/ContenitoreRisultatoSegreto"]
+[node name="LabelRisultatoSegreto" type="Label" parent="Documento/ContenitoreGettoni/ContenitoreRisultatoSegreto"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -178,12 +245,13 @@ offset_right = 220.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 autowrap_mode = 2
 text = ""
 
-[node name="BottoneOkProssimo" type="Button" parent="ContenitoreGettoni/ContenitoreRisultatoSegreto"]
+[node name="BottoneOkProssimo" type="Button" parent="Documento/ContenitoreGettoni/ContenitoreRisultatoSegreto"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,9 +264,13 @@ offset_right = 110.0
 offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 text = "Ok, passa il dispositivo"
 
-[node name="ContenitoreDiscussione" type="Control" parent="."]
+[node name="ContenitoreDiscussione" type="Control" parent="Documento"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -207,7 +279,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelMessaggio" type="Label" parent="ContenitoreDiscussione"]
+[node name="LabelMessaggio" type="Label" parent="Documento/ContenitoreDiscussione"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -220,13 +292,14 @@ offset_right = 220.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 autowrap_mode = 2
 text = "Discutete a voce con gli altri giocatori su chi pensate sia l'infiltrato.
 Quando avete finito, premete Continua per passare alla votazione."
 
-[node name="LabelCountdown" type="Label" parent="ContenitoreDiscussione"]
+[node name="LabelCountdown" type="Label" parent="Documento/ContenitoreDiscussione"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -239,11 +312,12 @@ offset_right = 100.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 text = "Tempo rimasto: 90s"
 
-[node name="BottoneContinua" type="Button" parent="ContenitoreDiscussione"]
+[node name="BottoneContinua" type="Button" parent="Documento/ContenitoreDiscussione"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -256,8 +330,12 @@ offset_right = 80.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = ExtResource("7_bottone_primario_normale")
+theme_override_styles/hover = ExtResource("8_bottone_primario_hover")
+theme_override_styles/pressed = ExtResource("9_bottone_primario_premuto")
+theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
 text = "Continua"
 
-[node name="TimerDiscussione" type="Timer" parent="ContenitoreDiscussione"]
+[node name="TimerDiscussione" type="Timer" parent="Documento/ContenitoreDiscussione"]
 wait_time = 90.0
 one_shot = true

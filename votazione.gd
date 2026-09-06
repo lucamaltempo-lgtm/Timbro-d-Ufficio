@@ -6,13 +6,15 @@ extends Control
 var indice_corrente: int = 0
 var voti: Dictionary = {}
 
-@onready var contenitore_voto: Control = get_node("ContenitoreVoto")
-@onready var label_giocatore: Label = get_node("ContenitoreVoto/LabelGiocatore")
-@onready var lista_voto: VBoxContainer = get_node("ContenitoreVoto/ScrollContainer/ListaVoto")
-@onready var contenitore_risultati: Control = get_node("ContenitoreRisultati")
-@onready var label_risultato: Label = get_node("ContenitoreRisultati/LabelRisultato")
-@onready var lista_voti_dettaglio: VBoxContainer = get_node("ContenitoreRisultati/ScrollContainerRisultati/ListaVotiDettaglio")
-@onready var bottone_lobby: Button = get_node("ContenitoreRisultati/BottoneLobby")
+# I nodi sono annidati dentro il pannello "Documento" (l'aspetto da foglio
+# d'ufficio della schermata): vedi votazione.tscn.
+@onready var contenitore_voto: Control = get_node("Documento/ContenitoreVoto")
+@onready var label_giocatore: Label = get_node("Documento/ContenitoreVoto/LabelGiocatore")
+@onready var lista_voto: VBoxContainer = get_node("Documento/ContenitoreVoto/ScrollContainer/ListaVoto")
+@onready var contenitore_risultati: Control = get_node("Documento/ContenitoreRisultati")
+@onready var label_risultato: Label = get_node("Documento/ContenitoreRisultati/LabelRisultato")
+@onready var lista_voti_dettaglio: VBoxContainer = get_node("Documento/ContenitoreRisultati/ScrollContainerRisultati/ListaVotiDettaglio")
+@onready var bottone_lobby: Button = get_node("Documento/ContenitoreRisultati/BottoneLobby")
 
 func _ready() -> void:
 	print("Script votazione partito")
@@ -46,6 +48,7 @@ func _mostra_turno_corrente() -> void:
 		var bottone = Button.new()
 		bottone.text = nome_giocatore
 		bottone.pressed.connect(_on_voto_premuto.bind(nome_giocatore))
+		TemaUfficio.applica_stile_bottone(bottone)
 		lista_voto.add_child(bottone)
 
 func _on_voto_premuto(nome_votato: String) -> void:
@@ -69,6 +72,7 @@ func _mostra_risultati() -> void:
 	for nome_giocatore in giocatori:
 		var riga = Label.new()
 		riga.text = nome_giocatore + ": " + str(voti[nome_giocatore]) + " voti"
+		riga.add_theme_color_override("font_color", TemaUfficio.COLORE_INCHIOSTRO)
 		lista_voti_dettaglio.add_child(riga)
 		if voti[nome_giocatore] == voti_massimi:
 			piu_votati.append(nome_giocatore)

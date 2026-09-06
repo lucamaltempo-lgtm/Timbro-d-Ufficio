@@ -6,10 +6,12 @@ extends Control
 var indice_corrente: int = 0
 var giudizi: Dictionary = {}
 
-@onready var label_giocatore: Label = get_node("LabelGiocatore")
-@onready var campo_giudizio: LineEdit = get_node("CampoGiudizio")
-@onready var bottone_conferma: Button = get_node("BottoneConferma")
-@onready var label_avviso: Label = get_node("LabelAvviso")
+# I nodi sono annidati dentro il pannello "Documento" (l'aspetto da foglio
+# d'ufficio della schermata): vedi assegnazione_timbri.tscn.
+@onready var label_giocatore: Label = get_node("Documento/LabelGiocatore")
+@onready var campo_giudizio: LineEdit = get_node("Documento/CampoGiudizio")
+@onready var bottone_conferma: Button = get_node("Documento/BottoneConferma")
+@onready var label_avviso: Label = get_node("Documento/LabelAvviso")
 
 func _ready() -> void:
 	print("Script assegnazione timbri partito")

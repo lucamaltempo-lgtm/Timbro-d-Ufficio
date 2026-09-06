@@ -6,23 +6,25 @@ extends Control
 var indice_corrente: int = 0
 var azione_in_corso: String = ""  # "" | "depistaggio" | "verifica"
 
-@onready var contenitore_gettoni: Control = get_node("ContenitoreGettoni")
-@onready var label_giocatore_gettoni: Label = get_node("ContenitoreGettoni/LabelGiocatoreGettoni")
-@onready var bottone_depistaggio: Button = get_node("ContenitoreGettoni/BottoneDepistaggio")
-@onready var bottone_verifica: Button = get_node("ContenitoreGettoni/BottoneVerifica")
-@onready var bottone_passa: Button = get_node("ContenitoreGettoni/BottonePassa")
-@onready var contenitore_selezione_target: Control = get_node("ContenitoreGettoni/ContenitoreSelezioneTarget")
-@onready var label_selezione_target: Label = get_node("ContenitoreGettoni/ContenitoreSelezioneTarget/LabelSelezioneTarget")
-@onready var lista_target: VBoxContainer = get_node("ContenitoreGettoni/ContenitoreSelezioneTarget/ScrollContainerTarget/ListaTarget")
-@onready var bottone_annulla_selezione: Button = get_node("ContenitoreGettoni/ContenitoreSelezioneTarget/BottoneAnnullaSelezione")
-@onready var contenitore_risultato_segreto: Control = get_node("ContenitoreGettoni/ContenitoreRisultatoSegreto")
-@onready var label_risultato_segreto: Label = get_node("ContenitoreGettoni/ContenitoreRisultatoSegreto/LabelRisultatoSegreto")
-@onready var bottone_ok_prossimo: Button = get_node("ContenitoreGettoni/ContenitoreRisultatoSegreto/BottoneOkProssimo")
+# I nodi sono annidati dentro il pannello "Documento" (l'aspetto da foglio
+# d'ufficio della schermata): vedi discussione.tscn.
+@onready var contenitore_gettoni: Control = get_node("Documento/ContenitoreGettoni")
+@onready var label_giocatore_gettoni: Label = get_node("Documento/ContenitoreGettoni/LabelGiocatoreGettoni")
+@onready var bottone_depistaggio: Button = get_node("Documento/ContenitoreGettoni/BottoneDepistaggio")
+@onready var bottone_verifica: Button = get_node("Documento/ContenitoreGettoni/BottoneVerifica")
+@onready var bottone_passa: Button = get_node("Documento/ContenitoreGettoni/BottonePassa")
+@onready var contenitore_selezione_target: Control = get_node("Documento/ContenitoreGettoni/ContenitoreSelezioneTarget")
+@onready var label_selezione_target: Label = get_node("Documento/ContenitoreGettoni/ContenitoreSelezioneTarget/LabelSelezioneTarget")
+@onready var lista_target: VBoxContainer = get_node("Documento/ContenitoreGettoni/ContenitoreSelezioneTarget/ScrollContainerTarget/ListaTarget")
+@onready var bottone_annulla_selezione: Button = get_node("Documento/ContenitoreGettoni/ContenitoreSelezioneTarget/BottoneAnnullaSelezione")
+@onready var contenitore_risultato_segreto: Control = get_node("Documento/ContenitoreGettoni/ContenitoreRisultatoSegreto")
+@onready var label_risultato_segreto: Label = get_node("Documento/ContenitoreGettoni/ContenitoreRisultatoSegreto/LabelRisultatoSegreto")
+@onready var bottone_ok_prossimo: Button = get_node("Documento/ContenitoreGettoni/ContenitoreRisultatoSegreto/BottoneOkProssimo")
 
-@onready var contenitore_discussione: Control = get_node("ContenitoreDiscussione")
-@onready var bottone_continua: Button = get_node("ContenitoreDiscussione/BottoneContinua")
-@onready var timer_discussione: Timer = get_node("ContenitoreDiscussione/TimerDiscussione")
-@onready var label_countdown: Label = get_node("ContenitoreDiscussione/LabelCountdown")
+@onready var contenitore_discussione: Control = get_node("Documento/ContenitoreDiscussione")
+@onready var bottone_continua: Button = get_node("Documento/ContenitoreDiscussione/BottoneContinua")
+@onready var timer_discussione: Timer = get_node("Documento/ContenitoreDiscussione/TimerDiscussione")
+@onready var label_countdown: Label = get_node("Documento/ContenitoreDiscussione/LabelCountdown")
 
 func _ready() -> void:
 	print("Script discussione partito")
@@ -96,6 +98,7 @@ func _mostra_selezione_target(testo: String) -> void:
 		var bottone = Button.new()
 		bottone.text = nome_giocatore
 		bottone.pressed.connect(_on_target_scelto.bind(nome_giocatore))
+		TemaUfficio.applica_stile_bottone(bottone)
 		lista_target.add_child(bottone)
 
 	_imposta_visibilita_scelte_gettoni(false)

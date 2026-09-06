@@ -1,6 +1,12 @@
-[gd_scene format=3 uid="uid://dnwk8eqr4wuno"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" uid="uid://xlk12stw67d4" path="res://assegnazione_timbri.gd" id="1_asgnt"]
+[ext_resource type="StyleBoxFlat" path="res://stile_documento.tres" id="2_documento"]
+[ext_resource type="StyleBoxFlat" path="res://stile_campo_testo.tres" id="3_campo_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_campo_testo_focus.tres" id="4_campo_focus"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_normale.tres" id="5_bottone_primario_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_hover.tres" id="6_bottone_primario_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_premuto.tres" id="7_bottone_primario_premuto"]
 
 [node name="AssegnazioneTimbri" type="Control" unique_id=1233658958]
 layout_mode = 3
@@ -11,65 +17,116 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_asgnt")
 
-[node name="LabelGiocatore" type="Label" parent="." unique_id=627549672]
+[node name="Sfondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.29, 0.24, 1)
+
+[node name="Documento" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_documento")
+
+[node name="LabelTitolo" type="Label" parent="Documento"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -120.0
-offset_top = 60.0
-offset_right = 120.0
-offset_bottom = 100.0
+offset_left = -210.0
+offset_top = 18.0
+offset_right = 210.0
+offset_bottom = 54.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
-text = "Giocatore 1"
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
+text = "ASSEGNAZIONE TIMBRI"
 
-[node name="CampoGiudizio" type="LineEdit" parent="." unique_id=1483453217]
+[node name="LineaSeparatore" type="ColorRect" parent="Documento"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -20.0
-offset_right = 150.0
-offset_bottom = 20.0
+offset_left = -190.0
+offset_top = 58.0
+offset_right = 190.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 2
+color = Color(0.66, 0.6, 0.48, 1)
+
+[node name="LabelGiocatore" type="Label" parent="Documento" unique_id=627549672]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 110.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+text = "Giocatore 1"
+
+[node name="CampoGiudizio" type="LineEdit" parent="Documento" unique_id=1483453217]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 170.0
+offset_right = 150.0
+offset_bottom = 210.0
+grow_horizontal = 2
+theme_override_styles/normal = ExtResource("3_campo_normale")
+theme_override_styles/focus = ExtResource("4_campo_focus")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_colors/font_placeholder_color = Color(0.55, 0.5, 0.42, 1)
 placeholder_text = "Scrivi il tuo giudizio..."
 
-[node name="LabelAvviso" type="Label" parent="."]
+[node name="LabelAvviso" type="Label" parent="Documento"]
 visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 26.0
-offset_right = 150.0
-offset_bottom = 58.0
+offset_left = -210.0
+offset_top = 216.0
+offset_right = 210.0
+offset_bottom = 248.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_color = Color(0.9, 0.15, 0.15, 1)
 horizontal_alignment = 1
 autowrap_mode = 2
 text = ""
 
-[node name="BottoneConferma" type="Button" parent="." unique_id=2018432667]
+[node name="BottoneConferma" type="Button" parent="Documento" unique_id=2018432667]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = 64.0
-offset_right = 60.0
-offset_bottom = 104.0
+offset_left = -70.0
+offset_top = 260.0
+offset_right = 70.0
+offset_bottom = 300.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_styles/normal = ExtResource("5_bottone_primario_normale")
+theme_override_styles/hover = ExtResource("6_bottone_primario_hover")
+theme_override_styles/pressed = ExtResource("7_bottone_primario_premuto")
+theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
 text = "Conferma"
