@@ -1,8 +1,14 @@
 extends Control
 
-@onready var lista_giudizi: VBoxContainer = get_node("ScrollContainer/ListaGiudizi")
-@onready var bottone_discussione: Button = get_node("BottoneDiscussione")
-@onready var bottone_lobby: Button = get_node("BottoneLobby")
+# Nodi annidati dentro il pannello "Documento" (l'aspetto da foglio d'ufficio
+# della schermata): vedi riepilogo_giudizi.tscn.
+@onready var lista_giudizi: VBoxContainer = get_node("Documento/ScrollContainer/ListaGiudizi")
+@onready var bottone_discussione: Button = get_node("Documento/BottoneDiscussione")
+@onready var bottone_lobby: Button = get_node("Documento/BottoneLobby")
+
+# Colore "inchiostro" usato per le righe del modulo, coerente col resto del
+# documento finto.
+const COLORE_INCHIOSTRO := Color(0.2, 0.17, 0.13)
 
 func _ready() -> void:
 	print("Script riepilogo giudizi partito")
@@ -16,7 +22,10 @@ func _popola_riepilogo() -> void:
 
 	for nome_giocatore in GameState.giudizi.keys():
 		var riga = Label.new()
-		riga.text = nome_giocatore + ": " + GameState.giudizi[nome_giocatore]
+		riga.text = "• " + nome_giocatore + ": " + GameState.giudizi[nome_giocatore]
+		riga.autowrap_mode = TextServer.AUTOWRAP_WORD
+		riga.add_theme_color_override("font_color", COLORE_INCHIOSTRO)
+		riga.add_theme_font_size_override("font_size", 16)
 		lista_giudizi.add_child(riga)
 
 func _on_discussione_premuto() -> void:

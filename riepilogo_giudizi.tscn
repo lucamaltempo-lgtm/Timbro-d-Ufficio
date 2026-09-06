@@ -1,6 +1,66 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://riepilogo_giudizi.gd" id="1_riep"]
+
+[sub_resource type="StyleBoxFlat" id="StyleDocumento"]
+bg_color = Color(0.973, 0.957, 0.91, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.73, 0.62, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 12
+shadow_offset = Vector2(4, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleTimbro"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.72, 0.13, 0.13, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StylePrimarioNormale"]
+bg_color = Color(0.18, 0.32, 0.5, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StylePrimarioHover"]
+bg_color = Color(0.24, 0.4, 0.6, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StylePrimarioPremuto"]
+bg_color = Color(0.13, 0.24, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StileSecondarioNormale"]
+bg_color = Color(0.87, 0.84, 0.76, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.7, 0.65, 0.54, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="RiepilogoGiudizi" type="Control"]
 layout_mode = 3
@@ -11,64 +71,134 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_riep")
 
-[node name="LabelTitolo" type="Label" parent="."]
+[node name="Sfondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.29, 0.24, 1)
+
+[node name="Documento" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleDocumento")
+
+[node name="LabelTitolo" type="Label" parent="Documento"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -150.0
-offset_top = 40.0
-offset_right = 150.0
-offset_bottom = 80.0
+offset_left = -180.0
+offset_top = 18.0
+offset_right = 180.0
+offset_bottom = 54.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
-text = "Riepilogo giudizi"
+text = "RIEPILOGO GIUDIZI"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="LineaSeparatore" type="ColorRect" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 58.0
+offset_right = 190.0
+offset_bottom = 60.0
+grow_horizontal = 2
+color = Color(0.66, 0.6, 0.48, 1)
+
+[node name="PanelTimbro" type="Panel" parent="Documento"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -132.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 58.0
+grow_horizontal = 0
+pivot_offset = Vector2(58, 22)
+rotation = -0.24
+theme_override_styles/panel = SubResource("StyleTimbro")
+
+[node name="LabelTimbro" type="Label" parent="Documento/PanelTimbro"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.72, 0.13, 0.13, 0.85)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "TIMBRATO"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Documento"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -120.0
-offset_right = 200.0
-offset_bottom = 100.0
+offset_left = -210.0
+offset_top = -142.0
+offset_right = 210.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ListaGiudizi" type="VBoxContainer" parent="ScrollContainer"]
+[node name="ListaGiudizi" type="VBoxContainer" parent="Documento/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BottoneDiscussione" type="Button" parent="."]
+[node name="BottoneDiscussione" type="Button" parent="Documento"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = 150.0
-offset_right = 90.0
-offset_bottom = 190.0
+offset_left = -140.0
+offset_top = 124.0
+offset_right = 140.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StylePrimarioNormale")
+theme_override_styles/hover = SubResource("StylePrimarioHover")
+theme_override_styles/pressed = SubResource("StylePrimarioPremuto")
+theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
 text = "Vai alla discussione"
 
-[node name="BottoneLobby" type="Button" parent="."]
+[node name="BottoneLobby" type="Button" parent="Documento"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = 200.0
-offset_right = 80.0
-offset_bottom = 240.0
+offset_left = -110.0
+offset_top = 170.0
+offset_right = 110.0
+offset_bottom = 206.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StileSecondarioNormale")
+theme_override_colors/font_color = Color(0.22, 0.19, 0.15, 1)
 text = "Torna alla lobby"
