@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://cupynfoqjtx5x"]
 
 [ext_resource type="Script" uid="uid://rnlp60jtsi31" path="res://button.gd" id="1_lobby"]
 [ext_resource type="StyleBoxFlat" path="res://stile_documento.tres" id="2_documento"]

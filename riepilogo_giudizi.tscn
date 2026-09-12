@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://riepilogo_giudizi.gd" id="1_riep"]
+[ext_resource type="StyleBoxFlat" path="res://stile_timbro.tres" id="2_timbro"]
 
 [sub_resource type="StyleBoxFlat" id="StyleDocumento"]
 bg_color = Color(0.973, 0.957, 0.91, 1)
@@ -16,18 +17,6 @@ corner_radius_bottom_left = 6
 shadow_color = Color(0, 0, 0, 0.35)
 shadow_size = 12
 shadow_offset = Vector2(4, 6)
-
-[sub_resource type="StyleBoxFlat" id="StyleTimbro"]
-bg_color = Color(1, 1, 1, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.72, 0.13, 0.13, 0.8)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StylePrimarioNormale"]
 bg_color = Color(0.18, 0.32, 0.5, 1)
@@ -134,7 +123,7 @@ offset_bottom = 58.0
 grow_horizontal = 0
 pivot_offset = Vector2(58, 22)
 rotation = -0.24
-theme_override_styles/panel = SubResource("StyleTimbro")
+theme_override_styles/panel = ExtResource("2_timbro")
 
 [node name="LabelTimbro" type="Label" parent="Documento/PanelTimbro"]
 layout_mode = 1
