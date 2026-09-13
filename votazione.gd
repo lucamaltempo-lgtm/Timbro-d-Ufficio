@@ -78,15 +78,23 @@ func _mostra_risultati() -> void:
 			piu_votati.append(nome_giocatore)
 
 	var infiltrato_scoperto = GameState.infiltrato in piu_votati
+	var c_e_complice = not GameState.complice.is_empty()
 
 	var testo = "Più votato/i: " + ", ".join(piu_votati) + "\n"
 	testo += "L'infiltrato era: " + GameState.infiltrato + "\n"
+	if c_e_complice:
+		# Il Complice viene svelato solo a fine partita, insieme all'infiltrato:
+		# durante il gioco è rimasto indistinguibile da un Innocente.
+		testo += "Il complice dell'infiltrato era: " + GameState.complice + "\n"
 	if infiltrato_scoperto:
 		testo += "L'infiltrato è stato scoperto!\n"
 		testo += "Vittoria degli altri giocatori!"
 	else:
 		testo += "L'infiltrato NON è stato scoperto!\n"
-		testo += "Vittoria dell'infiltrato!"
+		if c_e_complice:
+			testo += "Vittoria dell'infiltrato e del complice!"
+		else:
+			testo += "Vittoria dell'infiltrato!"
 
 	label_risultato.text = testo
 	print(testo)

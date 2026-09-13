@@ -86,11 +86,36 @@ func _on_inizio_premuto() -> void:
 	# in GameState per la logica di gioco nella schermata successiva.
 	var infiltrato = nomi_giocatori[randi() % nomi_giocatori.size()]
 	GameState.infiltrato = infiltrato
+
+	# Il Complice (0 o 1 a partita) conosce l'infiltrato ma resta indistinguibile
+	# da un Innocente durante il gioco: anche lui resta segreto, non mostrato
+	# a schermo. La probabilità che ci sia cresce con il numero di giocatori,
+	# per non sbilanciare troppo le partite piccole.
+	var complice = ""
+	if randf() < _probabilita_complice(nomi_giocatori.size()):
+		var candidati_complice: Array[String] = nomi_giocatori.filter(
+			func(nome): return nome != infiltrato
+		)
+		complice = candidati_complice[randi() % candidati_complice.size()]
+	GameState.complice = complice
+
 	GameState.giocatori = nomi_giocatori
 	# Nuova partita: azzera i gettoni azione e i voti extra della partita precedente.
 	GameState.gettoni_usati = {}
 	GameState.voti_extra = {}
 	get_tree().change_scene_to_file("res://assegnazione_timbri.tscn")
+
+# Probabilità di assegnare il Complice in base al numero di giocatori: con
+# gruppi piccoli (3-4) non compare mai, poi diventa via via più probabile.
+func _probabilita_complice(numero_giocatori: int) -> float:
+	if numero_giocatori <= 4:
+		return 0.0
+	elif numero_giocatori <= 6:
+		return 1.0 / 3.0
+	elif numero_giocatori <= 8:
+		return 0.5
+	else:
+		return 2.0 / 3.0
 
 # Evita nomi duplicati (romperebbero la logica a chiave-nome delle altre schermate).
 func _rendi_nome_univoco(nome: String, nomi_esistenti: Array[String]) -> String:
