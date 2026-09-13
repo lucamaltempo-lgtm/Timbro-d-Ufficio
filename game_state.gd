@@ -9,6 +9,11 @@ var infiltrato: String = ""
 var complice: String = ""
 var giudizi: Dictionary = {}
 
+# Parola segreta della fase Indizio, nota a tutti tranne che all'infiltrato.
+var parola_segreta: String = ""
+# Indizi dati nella fase Indizio: nome giocatore -> testo dell'indizio.
+var indizi: Dictionary = {}
+
 # Gettoni azione usati durante la discussione: nome giocatore -> { "depistaggio": bool, "verifica": bool }
 var gettoni_usati: Dictionary = {}
 # Voti extra segreti aggiunti col gettone Depistaggio: nome giocatore votato -> quanti voti extra

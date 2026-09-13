@@ -7,6 +7,14 @@ const GIOCATORI_INIZIALI := 4
 const MIN_GIOCATORI := 3
 const MAX_GIOCATORI := 10
 
+# Parole semplici usate come parola segreta della fase Indizio. Note a tutti
+# i giocatori tranne che all'infiltrato, che deve bluffare senza conoscerla.
+const PAROLE_SEGRETE: Array[String] = [
+	"PANE", "SOLE", "LIBRO", "GATTO", "CASA", "FIUME", "MELA", "TRENO",
+	"SCUOLA", "MARE", "MONTAGNA", "FIORE", "STRADA", "FINESTRA", "CHIAVE",
+	"OROLOGIO", "SEDIA", "ALBERO", "PONTE", "LUNA",
+]
+
 var righe_giocatori: Array[HBoxContainer] = []
 
 # I nodi sono annidati dentro il pannello "Documento" (l'aspetto da foglio
@@ -82,15 +90,16 @@ func _on_inizio_premuto() -> void:
 			nome = "Giocatore " + str(nomi_giocatori.size() + 1)
 		nomi_giocatori.append(_rendi_nome_univoco(nome, nomi_giocatori))
 
-	# L'infiltrato resta segreto: non viene mostrato a schermo, solo salvato
-	# in GameState per la logica di gioco nella schermata successiva.
+	# L'infiltrato viene salvato in GameState per la logica di gioco; verrà
+	# rivelato privatamente a ogni giocatore, uno alla volta, nella prossima
+	# schermata (rivelazione_ruoli), mai mostrato a più persone insieme.
 	var infiltrato = nomi_giocatori[randi() % nomi_giocatori.size()]
 	GameState.infiltrato = infiltrato
 
-	# Il Complice (0 o 1 a partita) conosce l'infiltrato ma resta indistinguibile
-	# da un Innocente durante il gioco: anche lui resta segreto, non mostrato
-	# a schermo. La probabilità che ci sia cresce con il numero di giocatori,
-	# per non sbilanciare troppo le partite piccole.
+	# Il Complice (0 o 1 a partita) conosce l'infiltrato ma gioca in tutto e
+	# per tutto come un Innocente: nessuna azione visibile diversa durante il
+	# gioco. La probabilità che ci sia cresce con il numero di giocatori, per
+	# non sbilanciare troppo le partite piccole.
 	var complice = ""
 	if randf() < _probabilita_complice(nomi_giocatori.size()):
 		var candidati_complice: Array[String] = nomi_giocatori.filter(
@@ -99,11 +108,15 @@ func _on_inizio_premuto() -> void:
 		complice = candidati_complice[randi() % candidati_complice.size()]
 	GameState.complice = complice
 
+	# Parola segreta della fase Indizio: nota a tutti tranne che all'infiltrato.
+	GameState.parola_segreta = PAROLE_SEGRETE[randi() % PAROLE_SEGRETE.size()]
+
 	GameState.giocatori = nomi_giocatori
-	# Nuova partita: azzera i gettoni azione e i voti extra della partita precedente.
+	# Nuova partita: azzera i gettoni azione, i voti extra e gli indizi della partita precedente.
 	GameState.gettoni_usati = {}
 	GameState.voti_extra = {}
-	get_tree().change_scene_to_file("res://assegnazione_timbri.tscn")
+	GameState.indizi = {}
+	get_tree().change_scene_to_file("res://rivelazione_ruoli.tscn")
 
 # Probabilità di assegnare il Complice in base al numero di giocatori: con
 # gruppi piccoli (3-4) non compare mai, poi diventa via via più probabile.

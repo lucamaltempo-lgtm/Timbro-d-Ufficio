@@ -1,0 +1,164 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://rivelazione_ruoli.gd" id="1_rivru"]
+[ext_resource type="StyleBoxFlat" path="res://stile_documento.tres" id="2_documento"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_normale.tres" id="3_bottone_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_hover.tres" id="4_bottone_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_premuto.tres" id="5_bottone_premuto"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_normale.tres" id="6_bottone_primario_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_hover.tres" id="7_bottone_primario_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_premuto.tres" id="8_bottone_primario_premuto"]
+
+[node name="RivelazioneRuoli" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rivru")
+
+[node name="Sfondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.29, 0.24, 1)
+
+[node name="Documento" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_documento")
+
+[node name="LabelTitolo" type="Label" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 18.0
+offset_right = 210.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 24
+text = "RIVELAZIONE RUOLI"
+horizontal_alignment = 1
+
+[node name="LineaSeparatore" type="ColorRect" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 58.0
+offset_right = 190.0
+offset_bottom = 60.0
+grow_horizontal = 2
+color = Color(0.66, 0.6, 0.48, 1)
+
+[node name="ContenitoreNascosto" type="Control" parent="Documento"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelPassaggio" type="Label" parent="Documento/ContenitoreNascosto"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Passa il dispositivo a Giocatore 1.
+Quando sei pronto/a, premi \"Mostra il ruolo\"."
+
+[node name="BottoneMostra" type="Button" parent="Documento/ContenitoreNascosto"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("6_bottone_primario_normale")
+theme_override_styles/hover = ExtResource("7_bottone_primario_hover")
+theme_override_styles/pressed = ExtResource("8_bottone_primario_premuto")
+theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
+text = "Mostra il ruolo"
+
+[node name="ContenitoreRuolo" type="Control" parent="Documento"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelRuolo" type="Label" parent="Documento/ContenitoreRuolo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -110.0
+offset_right = 200.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Sei un INNOCENTE."
+
+[node name="BottoneContinua" type="Button" parent="Documento/ContenitoreRuolo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 60.0
+offset_right = 140.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_bottone_normale")
+theme_override_styles/hover = ExtResource("4_bottone_hover")
+theme_override_styles/pressed = ExtResource("5_bottone_premuto")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+text = "Ho letto, nascondi e passa il dispositivo"

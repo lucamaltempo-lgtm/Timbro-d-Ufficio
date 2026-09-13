@@ -1,0 +1,233 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://indizio.gd" id="1_indz"]
+[ext_resource type="StyleBoxFlat" path="res://stile_documento.tres" id="2_documento"]
+[ext_resource type="StyleBoxFlat" path="res://stile_campo_testo.tres" id="3_campo_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_campo_testo_focus.tres" id="4_campo_focus"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_normale.tres" id="5_bottone_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_hover.tres" id="6_bottone_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_premuto.tres" id="7_bottone_premuto"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_normale.tres" id="8_bottone_primario_normale"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_hover.tres" id="9_bottone_primario_hover"]
+[ext_resource type="StyleBoxFlat" path="res://stile_bottone_primario_premuto.tres" id="10_bottone_primario_premuto"]
+
+[node name="Indizio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_indz")
+
+[node name="Sfondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.29, 0.24, 1)
+
+[node name="Documento" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_documento")
+
+[node name="LabelTitolo" type="Label" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 18.0
+offset_right = 220.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 24
+text = "INDIZIO"
+horizontal_alignment = 1
+
+[node name="LineaSeparatore" type="ColorRect" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 58.0
+offset_right = 210.0
+offset_bottom = 60.0
+grow_horizontal = 2
+color = Color(0.66, 0.6, 0.48, 1)
+
+[node name="LabelListaTitolo" type="Label" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 68.0
+offset_right = 220.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 16
+text = "Indizi dati finora:"
+horizontal_alignment = 1
+
+[node name="ScrollContainerIndizi" type="ScrollContainer" parent="Documento"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 98.0
+offset_right = 220.0
+offset_bottom = 210.0
+grow_horizontal = 2
+
+[node name="ListaIndizi" type="VBoxContainer" parent="Documento/ScrollContainerIndizi"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContenitoreNascosto" type="Control" parent="Documento"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelPassaggio" type="Label" parent="Documento/ContenitoreNascosto"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -30.0
+offset_right = 220.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Passa il dispositivo a Giocatore 1.
+Quando sei pronto/a, premi \"Mostra\"."
+
+[node name="BottoneMostra" type="Button" parent="Documento/ContenitoreNascosto"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 70.0
+offset_right = 100.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("8_bottone_primario_normale")
+theme_override_styles/hover = ExtResource("9_bottone_primario_hover")
+theme_override_styles/pressed = ExtResource("10_bottone_primario_premuto")
+theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
+text = "Mostra"
+
+[node name="ContenitoreRivelato" type="Control" parent="Documento"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelParola" type="Label" parent="Documento/ContenitoreRivelato"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -30.0
+offset_right = 220.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "La parola segreta è: PANE"
+
+[node name="CampoIndizio" type="LineEdit" parent="Documento/ContenitoreRivelato"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 40.0
+offset_right = 180.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+theme_override_colors/font_placeholder_color = Color(0.55, 0.5, 0.42, 1)
+theme_override_styles/normal = ExtResource("3_campo_normale")
+theme_override_styles/focus = ExtResource("4_campo_focus")
+placeholder_text = "Scrivi il tuo indizio..."
+
+[node name="LabelAvviso" type="Label" parent="Documento/ContenitoreRivelato"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 82.0
+offset_right = 220.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.15, 0.15, 1)
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BottoneConferma" type="Button" parent="Documento/ContenitoreRivelato"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 124.0
+offset_right = 100.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("5_bottone_normale")
+theme_override_styles/hover = ExtResource("6_bottone_hover")
+theme_override_styles/pressed = ExtResource("7_bottone_premuto")
+theme_override_colors/font_color = Color(0.2, 0.17, 0.13, 1)
+text = "Conferma indizio"

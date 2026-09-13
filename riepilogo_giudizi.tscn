@@ -173,7 +173,7 @@ theme_override_styles/normal = SubResource("StylePrimarioNormale")
 theme_override_styles/hover = SubResource("StylePrimarioHover")
 theme_override_styles/pressed = SubResource("StylePrimarioPremuto")
 theme_override_colors/font_color = Color(0.96, 0.96, 0.95, 1)
-text = "Vai alla discussione"
+text = "Vai all'indizio"
 
 [node name="BottoneLobby" type="Button" parent="Documento"]
 layout_mode = 1

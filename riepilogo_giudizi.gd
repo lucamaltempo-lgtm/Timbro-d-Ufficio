@@ -29,8 +29,8 @@ func _popola_riepilogo() -> void:
 		lista_giudizi.add_child(riga)
 
 func _on_discussione_premuto() -> void:
-	print("Vado alla discussione")
-	get_tree().change_scene_to_file("res://discussione.tscn")
+	print("Vado alla fase Indizio")
+	get_tree().change_scene_to_file("res://indizio.tscn")
 
 func _on_lobby_premuto() -> void:
 	print("Ritorno alla lobby")
